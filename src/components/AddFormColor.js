@@ -23,3 +23,9 @@ const AddFormColor = ({ onNewColor=f=>f}) => {
     </form>
   )
 }
+
+AddFormColor.propTypes = {
+  onNewColor: PropTypes.func
+}
+
+export default AddFormColor;
