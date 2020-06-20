@@ -5,7 +5,7 @@ import AddFormColor from './AddFormColor'
 import ColorList from './ColorList'
 import '../style/App.css';
 
-export default class App extends Component {
+export default class App extends React.Component {
 
     constructor(props) {
         super(props)
@@ -55,7 +55,7 @@ export default class App extends Component {
         const { colors } = this.state
         return (
             <div className="app">
-                <AddColorForm onNewColor={addColor} />
+                <AddFormColor onNewColor={addColor} />
                 <ColorList colors={colors}
                            onRate={rateColor}
                            onRemove={removeColor} />
