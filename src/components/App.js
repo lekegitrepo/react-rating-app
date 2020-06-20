@@ -1,6 +1,6 @@
 import React from 'react';
 import StarRating from './starRating';
-import './style/App.css';
+import '../style/App.css';
 
 function App() {
   return (
