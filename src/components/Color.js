@@ -3,7 +3,48 @@ import PropTypes from 'prop-types'
 import StarRating from './starRating'
 import '../style/Color.css'
 
-const Color = ({ title, color, rating=0, onRemove=f=>f, onRate=f=>f}) =>
+class Color extends React.Component {
+
+  componentWillMount() {
+      this.style = { backgroundColor: "#CCC" }
+  }
+
+  componentWillUpdate() {
+    this.style = null
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { rating } = this.props
+    return rating !== nextProps.rating
+  }
+
+  render() {
+    const { title, rating, color, onRate } = this.props
+    return <section className="color" style={this.style}>
+        <h1 ref="title">{title}</h1>
+        <div className="color" style={{ backgroundColor: color }}>
+        </div>
+         <StarRating starsSelected={rating} onRate={onRate} />
+    </section>
+  }
+}
+
+Color.propTypes = {
+  title: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  rating: PropTypes.number,
+  onRemove: PropTypes.func,
+  onRate: PropTypes.func
+}
+
+Color.defaultProps = {
+  title: undefined,
+  rating: 0,
+  color: "#000000",
+  onRate: f=>f
+}
+
+/*const Color = ({ title, color, rating=0, onRemove=f=>f, onRate=f=>f}) =>
     <section className="color">
         <h1>{title}</h1>
         <button onClick={onRemove}>X</button>
@@ -13,14 +54,6 @@ const Color = ({ title, color, rating=0, onRemove=f=>f, onRate=f=>f}) =>
         <div>
             <StarRating starsSelected={rating} onRate={onRate}/>
         </div>
-    </section>
-
-Color.propTypes = {
-    title: PropTypes.string.isRequired,
-    color: PropTypes.string.isRequired,
-    rating: PropTypes.number,
-    onRemove: PropTypes.func,
-    onRate: PropTypes.func
-}
+    </section>*/
 
 export default Color;
