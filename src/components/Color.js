@@ -18,6 +18,12 @@ class Color extends React.Component {
     return rating !== nextProps.rating
   }
 
+  componentDidUpdate(prevProps) {
+    const { title, rating } = this.props
+    const status = (rating > prevProps.rating) ? 'better' : 'worse'
+    console.log(`${title} is getting ${status}`)
+  }
+
   render() {
     const { title, rating, color, onRate } = this.props
     return <section className="color" style={this.style}>
